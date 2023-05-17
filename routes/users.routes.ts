@@ -18,11 +18,11 @@ import {
   queryPageValidation,
 } from "../validations/commonReqValidators";
 import { fileUpload } from "../services/FileService";
-import rolePolice from "../middlewares/rolePolice";
+import checkTokenPolice from "../middlewares/checkTokenPolice";
 
 router.get(
   "/",
-  //   rolePolice(),
+    checkTokenPolice(),
   getAll
 );
 router.post(
@@ -33,24 +33,23 @@ router.post(
 router.post(
   "/signin",
   [userUpdateValidation, handleValidationError],
-  rolePolice(),
   signin
 );
 router.get(
   "/:id",
-//   rolePolice,
-//   [paramsIDValidation, handleValidationError],
+  checkTokenPolice(),
+  [paramsIDValidation, handleValidationError],
   getUserByID
 );
 router.put(
   "/:id",
-  rolePolice,
+  checkTokenPolice(),
   [paramsIDValidation, userUpdateValidation, handleValidationError],
   updateUser
 );
 router.delete(
   "/:id",
-  rolePolice,
+  checkTokenPolice(),
   [paramsIDValidation, handleValidationError],
   deleteUser
 );
