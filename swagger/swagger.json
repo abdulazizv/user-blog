@@ -7,6 +7,21 @@
     },
     "produces": ["application/json"],
     "paths": {
+      "/api/v1/users":{
+        "get":{
+          "x-swagger-router-controller":"home",
+          "tags": ["user"],
+          "description" : "get all user ",
+          "consumes": ["application/json"],
+          "security": [
+            {
+              "BearerAuth" : []
+            }
+          ],
+          "parameters":{},
+          "responses":{}
+        }
+      },
       "/api/v1/users/register": {
         "post": {
           "x-swagger-router-controller": "home",
@@ -153,26 +168,46 @@
           "responses": {}
         }
       },
-      "/product/{id}": {
+      "/api/v1/blog":{
+        "get":{
+          "x-swagger-router-controller":"home",
+          "tags":["blog"],
+          "description":"get all blogs",
+          "consumes": ["application/json"],
+          "security": [
+            {
+              "BearerAuth" : []
+            }
+          ],
+          "parameters":{},
+          "responses":{}
+        }
+      },
+      "/api/v1/blog{id}": {
         "get": {
           "x-swagger-router-controller": "home",
-          "tags": ["product"],
-          "description": "get product by id",
+          "tags": ["blog"],
+          "description": "get blog by id",
           "consumes": ["application/json"],
+          "security":[
+            {
+              "BearerAuth":{}
+            }
+          ],
           "parameters": [
             {
               "name": "id",
               "in": "path",
               "required": true,
-              "type": "number"
+              "type": "string"
             }
           ],
           "responses": {}
         },
         "patch": {
           "x-swagger-router-controller": "home",
-          "tags": ["product"],
-          "description": "update product by id",
+          "tags": ["blog"],
+          "description": "update blog by id",
           "consumes": ["application/json"],
           "security": [
             {
@@ -184,37 +219,29 @@
               "name": "id",
               "in": "path",
               "required": true,
-              "type": "number"
+              "type": "string"
             },
             {
-              "name": "name",
+              "name": "content",
               "in": "formData",
               "description": "Product name",
-              "required": true,
+              "required": false,
               "type": "string",
-              "value": "shaftoli"
+              "value": "content1"
             },
             {
-              "name": "description",
+              "name": "authorId",
               "in": "formData",
               "description": "Product description",
-              "required": true,
+              "required": false,
               "type": "string",
-              "value": "shaftoli"
-            },
-            {
-              "name": "price",
-              "in": "formData",
-              "description": "Product price",
-              "required": true,
-              "type": "number",
-              "value": 10000
+              "value": "64649abf831474835f5ad323"
             },
             {
               "name": "image",
               "in": "formData",
               "description": "Product image",
-              "required": true,
+              "required": false,
               "type": "file"
             }
           ],
@@ -222,247 +249,22 @@
         },
         "delete": {
           "x-swagger-router-controller": "home",
-          "tags": ["product"],
-          "description": "delete product by id",
+          "tags": ["blog"],
+          "description": "delete blog by id",
           "consumes": ["application/json"],
+          "security":[
+            {
+              "BearerAuth":{}
+            }
+          ],
           "parameters": [
             {
               "name": "id",
               "in": "path",
               "required": true,
-              "type": "number"
-            }
-          ],
-          "responses": {}
-        }
-      },
-      "/product/page/{page}": {
-        "get": {
-          "x-swagger-router-controller": "home",
-          "tags": ["product"],
-          "description": "pagination",
-          "consumes": ["application/json"],
-          "parameters": [
-            {
-              "name": "page",
-              "in": "path",
-              "required": true,
               "type": "string"
             }
           ],
-          "responses": {}
-        }
-      },
-      "/product/filter": {
-        "get": {
-          "x-swagger-router-controller": "home",
-          "tags": ["product"],
-          "description": "filter product",
-          "consumes": ["application/json"],
-          "parameters": [
-            {
-              "name": "name",
-              "in": "query",
-              "description": "Product name",
-              "type": "string",
-              "value": "shaftoli"
-            },
-            {
-              "name": "description",
-              "in": "query",
-              "description": "Product description",
-              "type": "string",
-              "value": "shaftoli"
-            },
-            {
-              "name": "price",
-              "in": "query",
-              "description": "Product price",
-              "type": "number",
-              "value": 1000
-            },
-            {
-              "name": "createdBy",
-              "in": "query",
-              "description": "Product creator",
-              "type": "string"
-            }
-          ],
-  
-          "responses": {}
-        }
-      },
-      "/order": {
-        "post": {
-          "x-swagger-router-controller": "home",
-          "tags": ["order"],
-          "description": "add order",
-          "security": [
-            {
-              "BearerAuth": []
-            }
-          ],
-          "consumes": ["application/json"],
-          "parameters": [
-            {
-              "name": "body",
-              "in": "body",
-              "description": "JSON object containing the user's username, password, and email",
-              "required": true,
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "products": {
-                    "type": "array",
-                    "example": "[]"
-                  },
-                  "orderDate": {
-                    "type": "string",
-                    "example": ""
-                  }
-                }
-              }
-            }
-          ],
-          "responses": {}
-        },
-        "get": {
-          "x-swagger-router-controller": "home",
-          "tags": ["order"],
-          "description": "get orders",
-          "consumes": ["application/json"],
-          "responses": {}
-        }
-      },
-      "/order/{id}": {
-        "get": {
-          "x-swagger-router-controller": "home",
-          "tags": ["order"],
-          "description": "get order by id",
-          "consumes": ["application/json"],
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "type": "number"
-            }
-          ],
-          "responses": {}
-        },
-        "patch": {
-          "x-swagger-router-controller": "home",
-          "tags": ["order"],
-          "description": "update order by id",
-          "security": [
-            {
-              "BearerAuth": []
-            }
-          ],
-          "consumes": ["application/json"],
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "type": "number"
-            },
-            {
-              "name": "body",
-              "in": "body",
-              "description": "JSON object containing the user's username, password, and email",
-              "required": false,
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "products": {
-                    "type": "array",
-                    "example": "[]"
-                  },
-                  "customer": {
-                    "type": "string"
-                  },
-                  "status": {
-                    "type": "string"
-                  },
-                  "orderDate": {
-                    "type": "string",
-                    "example": ""
-                  }
-                }
-              }
-            }
-          ],
-          "responses": {}
-        },
-        "delete": {
-          "x-swagger-router-controller": "home",
-          "tags": ["order"],
-          "description": "delete order by id",
-          "consumes": ["application/json"],
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "type": "number"
-            }
-          ],
-          "responses": {}
-        }
-      },
-      "/order/page/{page}": {
-        "get": {
-          "x-swagger-router-controller": "home",
-          "tags": ["order"],
-          "description": "pagination",
-          "consumes": ["application/json"],
-          "parameters": [
-            {
-              "name": "page",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "responses": {}
-        }
-      },
-      "/order/filter": {
-        "get": {
-          "x-swagger-router-controller": "home",
-          "tags": ["order"],
-          "description": "filter order",
-          "consumes": ["application/json"],
-          "parameters": [
-            {
-              "name": "customer",
-              "in": "query",
-              "description": "customer",
-              "type": "string",
-              "value": ""
-            },
-            {
-              "name": "products",
-              "in": "query",
-              "description": "products",
-              "type": "string"
-            },
-            {
-              "name": "orderDate",
-              "in": "query",
-              "description": "order date",
-              "type": "string",
-              "value": ""
-            },
-            {
-              "name": "status",
-              "in": "query",
-              "description": "order status",
-              "type": "string"
-            }
-          ],
-  
           "responses": {}
         }
       }
