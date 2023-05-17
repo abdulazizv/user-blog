@@ -28,7 +28,7 @@
       - Token:
           type: string
     responses:
-      200: 
+      200:
         content:
           application/json:
             schema:
@@ -36,8 +36,8 @@
 
 /users/{userId}:
   put:
-    tags: 
-      -  Users
+    tags:
+      - Users
     parametres:
       - name: userId
         in: path
@@ -50,10 +50,10 @@
         multipart/form-data:
           schema:
             type: object
-            properties: 
+            properties:
               name:
                 type: string
-              email: 
+              email:
                 type: string
               password:
                 type: string
@@ -68,20 +68,18 @@
               password:
                 type: string
       required: true
-    security: 
+    security:
       - api-key:
 
     responses:
-      200: 
+      200:
         content:
           application/json:
-            schema:
-              "/#/components/schemas/Response"
-
+            schema: "/#/components/schemas/Response"
 
   delete:
     tags:
-      - Users 
+      - Users
     parametres:
       - name: userId
         in: path
@@ -100,7 +98,7 @@ components:
   schemas:
     Response:
       type: object
-      properties:
+      properties: 
         name:
           type: string
         email:
@@ -110,28 +108,20 @@ components:
     Users:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
               id:
                 type: string
-              username:
+              name:
                 type: string
-              login:
+              email:
                 type: string
               password:
                 type: string
     requestUser:
       type: object
       properties:
-        username:
+        name:
           type: string
-        login:
+        email:
           type: string
         password:
           type: string
-        file:
-          type: string
-          format: binary
