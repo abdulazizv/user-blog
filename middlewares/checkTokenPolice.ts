@@ -23,8 +23,7 @@ export default function () {
         message: `You are not authorized`,
       });
     } catch (error) {
-      console.log(error)
-      res.status(401).send({ message: "Unauthorized" });
+      res.status(401).send({ message: "Unathorized",friendlyMg:error});
     }
   };
 }

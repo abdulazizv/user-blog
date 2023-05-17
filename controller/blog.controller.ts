@@ -4,12 +4,12 @@ import config from 'config';
 import Users from "../models/Users";
 import ApiError from "../errors/ApiError";
 
-async function getAllWithQuery(req: any, res: any) {
+export async function getAllWithQuery(req: any, res: any) {
     try {
-      const page = +req.query.page || 1;
+      const page = +req.body.page || 1;
       const itemsPerPage = 20;
   
-      const user = await Users.find()
+      const user = await Blog.find().populate("authorId")
         .skip((page - 1) * itemsPerPage)
         .limit(itemsPerPage);
   
@@ -29,5 +29,15 @@ async function getAllWithQuery(req: any, res: any) {
     }
 }
 
-async function createBlog(req:any,res: any){}
+export async function createBlog(req:any,res: any){
+  try {
+    let image = req.file.filename;
+
+    const blog = await Blog.create({...req.body,image:image});
+    
+    res.status(201).send(blog)
+  } catch (error) {
+    ApiError.internal(res,{message:"Internal server error"})
+  }
+}
   

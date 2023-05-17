@@ -17,7 +17,6 @@ import {
   paramsIDValidation,
   queryPageValidation,
 } from "../validations/commonReqValidators";
-import { fileUpload } from "../services/FileService";
 import checkTokenPolice from "../middlewares/checkTokenPolice";
 
 router.get(
