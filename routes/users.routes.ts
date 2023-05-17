@@ -18,6 +18,7 @@ import {
   queryPageValidation,
 } from "../validations/commonReqValidators";
 import checkTokenPolice from "../middlewares/checkTokenPolice";
+import selfTokenPolice from "../middlewares/selfGuard";
 
 router.get(
   "/",
@@ -48,7 +49,7 @@ router.put(
 );
 router.delete(
   "/:id",
-  checkTokenPolice(),
+  selfTokenPolice(),
   [paramsIDValidation, handleValidationError],
   deleteUser
 );
