@@ -273,13 +273,6 @@
             "required": false,
             "type": "string",
             "value": "64649abf831474835f5ad323"
-          },
-          {
-            "name": "image",
-            "in": "formData",
-            "description": "Product image",
-            "required": false,
-            "type": "file"
           }
         ],
         "responses": {}
