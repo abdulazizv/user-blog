@@ -1,6 +1,12 @@
 import { Router } from "express";
 const router = Router();
-import { getAllWithQuery, createBlog } from "../controller/blog.controller";
+import {
+  getAllBlog,
+  getblogBId,
+  deleteBlog,
+  updateBlog,
+  createBlog,
+} from "../controller/blog.controller";
 import {
   blogCreateValidation,
   blogUpdateValidation,
@@ -14,12 +20,15 @@ import {
 import { fileUpload } from "../services/FileService";
 import checkTokenPolice from "../middlewares/checkTokenPolice";
 
-router.get("/", checkTokenPolice(), getAllWithQuery);
+router.get("/", checkTokenPolice(), getAllBlog);
 router.post(
   "/",
+  checkTokenPolice(),
   fileUpload.single("image"),
   [blogCreateValidation],
   createBlog
 );
-
+router.get("/:id", checkTokenPolice(), getblogBId);
+router.put("/:id",checkTokenPolice(),[blogUpdateValidation,paramsIDValidation],updateBlog);
+router.delete("/:id",checkTokenPolice(),paramsIDValidation,deleteBlog);
 export = router;
