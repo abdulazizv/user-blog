@@ -5,6 +5,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import routes from "./routes/index.routes";
 import helmet from "helmet";
+import swRouter  from "./utils/swagger";
 
 const PORT = config.get("port") || 8808;
 const app = express();
@@ -18,16 +19,16 @@ app.use(helmet());
 app.use(cors());
 
 app.use("/api/v1", routes);
-
+app.use(swRouter);
 async function start() {
-    try {
-        await mongoose.connect(config.get("dbUri"));
-        app.listen(PORT, () => {
-            console.log(`Server has been running at ${PORT}`);
-        });
-    } catch (error) {
-        console.log(error);
-    }
+  try {
+    await mongoose.connect(config.get("dbUri"));
+    app.listen(PORT, () => {
+      console.log(`Server has been running at ${PORT}`);
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 start();

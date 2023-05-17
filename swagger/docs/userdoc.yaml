@@ -1,0 +1,137 @@
+/users:
+  get:
+    tags:
+      - Users
+    summary: get all User
+    description: allUser
+    responses:
+      200:
+        description: getting AllUsers
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Users"
+    security:
+      - Token:
+        type: string
+
+  post:
+    tags:
+      - Users
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            $ref: "#/components/shchemas/requestUser"
+    security:
+      - Token:
+          type: string
+    responses:
+      200: 
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Response"
+
+/users/{userId}:
+  put:
+    tags: 
+      -  Users
+    parametres:
+      - name: userId
+        in: path
+        description: enter ID
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties: 
+              name:
+                type: string
+              email: 
+                type: string
+              password:
+                type: string
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              email:
+                type: string
+              password:
+                type: string
+      required: true
+    security: 
+      - api-key:
+
+    responses:
+      200: 
+        content:
+          application/json:
+            schema:
+              "/#/components/schemas/Response"
+
+
+  delete:
+    tags:
+      - Users 
+    parametres:
+      - name: userId
+        in: path
+        description: enter ID
+        required: true
+        schema:
+          type: string
+    responses:
+      200:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Users"
+
+components:
+  schemas:
+    Response:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+    Users:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              username:
+                type: string
+              login:
+                type: string
+              password:
+                type: string
+    requestUser:
+      type: object
+      properties:
+        username:
+          type: string
+        login:
+          type: string
+        password:
+          type: string
+        file:
+          type: string
+          format: binary
