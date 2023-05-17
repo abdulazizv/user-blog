@@ -5,8 +5,12 @@ export default function () {
 
   return async function (req: Request, res: any, next: NextFunction) {
     const authorization = req.headers.authorization;
-    const token = authorization?.split(" ")[1];
-    
+    let token;
+    if(authorization?.includes("Bearer")) {
+      token = authorization.split(" ")[1];
+    } else {
+      token = authorization;
+    }
     if (!token) {
       res.status(401).send({message: "вы не авторизованы" });
       return;

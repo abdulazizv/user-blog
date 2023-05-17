@@ -47,6 +47,11 @@
           "tags": ["user"],
           "description": "get user by id",
           "consumes": ["application/json"],
+          "security": [
+            {
+              "BearerAuth" : []
+            }
+          ],
           "parameters": [
             {
               "name": "id",
@@ -62,6 +67,11 @@
           "tags": ["user"],
           "description": "update user by id",
           "consumes": ["application/json"],
+          "security": [
+            {
+              "BearerAuth" : []
+            }
+          ],
           "parameters": [
             {
               "name": "id",
@@ -97,6 +107,11 @@
           "tags": ["user"],
           "description": "delete user by id",
           "consumes": ["application/json"],
+          "security": [
+            {
+              "BearerAuth" : []
+            }
+          ],
           "parameters": [
             {
               "name": "id",
@@ -135,60 +150,6 @@
               }
             }
           ],
-          "responses": {}
-        }
-      },
-      "/product": {
-        "post": {
-          "x-swagger-router-controller": "home",
-          "tags": ["product"],
-          "description": "add product",
-          "security": [
-            {
-              "BearerAuth": []
-            }
-          ],
-          "consumes": ["multipart/form-data"],
-          "parameters": [
-            {
-              "name": "name",
-              "in": "formData",
-              "description": "Product name",
-              "required": true,
-              "type": "string",
-              "value": "shaftoli"
-            },
-            {
-              "name": "description",
-              "in": "formData",
-              "description": "Product description",
-              "required": true,
-              "type": "string",
-              "value": "shaftoli"
-            },
-            {
-              "name": "price",
-              "in": "formData",
-              "description": "Product price",
-              "required": true,
-              "type": "number",
-              "value": 10000
-            },
-            {
-              "name": "image",
-              "in": "formData",
-              "description": "Product image",
-              "required": true,
-              "type": "file"
-            }
-          ],
-          "responses": {}
-        },
-        "get": {
-          "x-swagger-router-controller": "home",
-          "tags": ["product"],
-          "description": "get products",
-          "consumes": ["application/json"],
           "responses": {}
         }
       },
