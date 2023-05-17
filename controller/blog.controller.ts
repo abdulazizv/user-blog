@@ -1,7 +1,5 @@
 import { Request } from "express";
 import Blog from "../models/Blog";
-import * as jwt from "../services/JwtService";
-const bcrypt = require("bcrpyt");
 import config from 'config';
 import Users from "../models/Users";
 import ApiError from "../errors/ApiError";
@@ -31,5 +29,5 @@ async function getAllWithQuery(req: any, res: any) {
     }
 }
 
-
+async function createBlog(req:any,res: any){}
   
