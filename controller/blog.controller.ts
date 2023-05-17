@@ -4,11 +4,12 @@ import * as jwt from "../services/JwtService";
 const bcrypt = require("bcrpyt");
 import config from 'config';
 import Users from "../models/Users";
+import ApiError from "../errors/ApiError";
 
-async function getAll(req: any, res: any) {
+async function getAllWithQuery(req: any, res: any) {
     try {
       const page = +req.query.page || 1;
-      const itemsPerPage = 10;
+      const itemsPerPage = 20;
   
       const user = await Users.find()
         .skip((page - 1) * itemsPerPage)
@@ -25,9 +26,7 @@ async function getAll(req: any, res: any) {
         }
     });
     } catch (error) {
-        res.status(502).send({
-            message:"Internal server error"
-        })
+       ApiError.internal(res,{message:"Internal server error"})
      
     }
 }
