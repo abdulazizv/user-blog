@@ -1,6 +1,6 @@
 import { checkSchema } from "express-validator";
 
-const userCreateValidation = checkSchema({
+export const userCreateValidation:any = checkSchema({
     name:{
         isString: {},
         errorMessage: "Name must be a string"
@@ -16,7 +16,7 @@ const userCreateValidation = checkSchema({
 })
 
 
-const userUpdateValidation = checkSchema({
+export const userUpdateValidation:any = checkSchema({
     name:{
         isString: {},
         optional:{},
@@ -33,8 +33,3 @@ const userUpdateValidation = checkSchema({
         errorMessage: "Password must be a string"
     }
 })
-
-exports = {
-    userCreateValidation,
-    userUpdateValidation
-}
