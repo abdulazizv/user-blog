@@ -1,0 +1,309 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "User Blog",
+    "description": "Swagger documentation",
+    "version": "1.0.0"
+  },
+  "produces": ["application/json"],
+  "paths": {
+    "/api/v1/users": {
+      "get": {
+        "x-swagger-router-controller": "home",
+        "tags": ["user"],
+        "description": "get all user ",
+        "consumes": ["application/json"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": {},
+        "responses": {}
+      }
+    },
+    "/api/v1/users/register": {
+      "post": {
+        "x-swagger-router-controller": "home",
+        "tags": ["user"],
+        "description": "user register",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "JSON object containing the user's username, password, and email",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "value": "Alexander"
+                },
+                "password": {
+                  "type": "string",
+                  "value": "jamalov07"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "jamalovn07@gmail.com"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/v1/users/{id}": {
+      "get": {
+        "x-swagger-router-controller": "home",
+        "tags": ["user"],
+        "description": "get user by id",
+        "consumes": ["application/json"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      },
+      "put": {
+        "x-swagger-router-controller": "home",
+        "tags": ["user"],
+        "description": "update user by id",
+        "consumes": ["application/json"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "JSON object containing the user's username, password, and email",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      },
+      "delete": {
+        "x-swagger-router-controller": "home",
+        "tags": ["user"],
+        "description": "delete user by id",
+        "consumes": ["application/json"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/v1/users/signin/": {
+      "post": {
+        "x-swagger-router-controller": "home",
+        "tags": ["user"],
+        "description": "user login",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "JSON object containing the user's username, password, and email",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "password": {
+                  "type": "string",
+                  "example": "jamalov"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "jamalovn07@gmail.com"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/v1/blog": {
+      "get": {
+        "x-swagger-router-controller": "home",
+        "tags": ["blog"],
+        "description": "get all blogs",
+        "consumes": ["application/json"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": {},
+        "responses": {}
+      },
+      "post": {
+        "x-swagger-router-controller": "home",
+        "tags": ["blog"],
+        "description": "create blog",
+        "consumes": ["application/json"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "content",
+            "in": "formData",
+            "description": "Product name",
+            "required": false,
+            "type": "string",
+            "value": "content1"
+          },
+          {
+            "name": "authorId",
+            "in": "formData",
+            "description": "Product description",
+            "required": false,
+            "type": "string",
+            "value": "64649abf831474835f5ad323"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "description": "Product image",
+            "required": false,
+            "type": "file"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/v1/blog{id}": {
+      "get": {
+        "x-swagger-router-controller": "home",
+        "tags": ["blog"],
+        "description": "get blog by id",
+        "consumes": ["application/json"],
+        "security": [
+          {
+            "BearerAuth": {}
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      },
+      "patch": {
+        "x-swagger-router-controller": "home",
+        "tags": ["blog"],
+        "description": "update blog by id",
+        "consumes": ["application/json"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "content",
+            "in": "formData",
+            "description": "Product name",
+            "required": false,
+            "type": "string",
+            "value": "content1"
+          },
+          {
+            "name": "authorId",
+            "in": "formData",
+            "description": "Product description",
+            "required": false,
+            "type": "string",
+            "value": "64649abf831474835f5ad323"
+          }
+        ],
+        "responses": {}
+      },
+      "delete": {
+        "x-swagger-router-controller": "home",
+        "tags": ["blog"],
+        "description": "delete blog by id",
+        "consumes": ["application/json"],
+        "security": [
+          {
+            "BearerAuth": {}
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    }
+  },
+  "securityDefinitions": {
+    "BearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
+}
